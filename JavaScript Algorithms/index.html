@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Bar Challenge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            background: #f0f0f0;
+        }
+
+        input {
+            padding: 0.5rem;
+            width: 300px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: white;
+            margin: 0.25rem 0;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Search Bar Challenge</h1>
+    <p>Type a name to search! Complete the search logic yourself.</p>
+    <input type="text" id="searchInput" placeholder="Search names..." />
+    <ul id="results"></ul>
+
+    <script>
+        // Sample data to search through
+        const names = [
+            "Krystal", "Alex", "Jordan", "Taylor", "Morgan",
+            "Sam", "Casey", "Jamie", "Riley", "Cameron"
+        ];
+
+        const input = document.getElementById('searchInput');
+        const results = document.getElementById('results');
+
+        function displayResults(filtered) {
+            results.innerHTML = '';
+            if (filtered.length === 0) {
+                results.innerHTML = '<li>No matches found</li>';
+            } else {
+                filtered.forEach(name => {
+                    const li = document.createElement('li');
+                    li.textContent = name;
+                    results.appendChild(li);
+                });
+            }
+        }
+
+        // Initial display of all names
+        displayResults(names);
+
+        // 🔹 Challenge: implement the search algorithm
+        input.addEventListener('input', () => {
+            const query = input.value.toLowerCase();
+
+            const filtered = []; // Start with empty array
+
+            // 💡 TASKS / HINTS:
+            // 1. Loop through the `names` array
+            // 2. Check if each name matches the query (think lowercase!)
+            // 3. If it matches, add it to `filtered` using `.push()`
+            // 4. Then call displayResults(filtered)
+
+            // 🔹 Your code goes here:
+            for (let i = 0; i < names.length; i++) {
+                if (names[i].toLowerCase().includes(query)) {
+                    filtered.push(names[i])
+                }
+            }
+
+            displayResults(filtered); // Do not remove this line
+        });
+    </script>
+</body>
+
+</html>

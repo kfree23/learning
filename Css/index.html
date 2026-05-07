@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Score Card</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f5f5f5;
+    }
+
+    .live-score-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px 32px;
+      width: 300px;
+      /* your box-shadow here */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+      /* your transition here */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .live-score-card:hover {
+      /* your transform here */
+      transform: translateY(-5px);
+      /* your deeper box-shadow here */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .live-score-card::before {
+      content: "LIVE";
+      display: block;
+      /* style it here */
+      /* your animation here */
+      animation: pulse 3s infinite  
+    }
+
+    @keyframes pulse {
+      /* your keyframes here */
+      0% {transform: scale(1);}
+      50% {transform: scale(1.2);}
+      100% {transform: scale(1);}
+    }
+  </style>
+</head>
+<body>
+  <div class="live-score-card">
+    <h2>Lakers vs Celtics</h2>
+    <p>98 — 101</p>
+    <p>Q3 · 4:32</p>
+  </div>
+</body>
+</html>
