@@ -71,14 +71,21 @@ p {
     color: var(--paragraph-text-color);
     font-size: 1rem;
     font-weight: 500;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
 .navbar a:hover {
     color: var(--primary-color);
-    transition: 0.3s ease;
 }
 
 .navbar a:focus {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 4px;
+}
+
+.navbar a:focus-visible {
     color: var(--primary-color);
     border-bottom: 2px solid var(--primary-color);
 }
@@ -244,9 +251,7 @@ p {
     color: var(--paragraph-text-color);
 }
 
-.contact-center {
-    flex-direction: row;
-}
+
 
 .contact-item {
     margin: 1rem 0;
@@ -301,10 +306,6 @@ input[type="number"] {
     justify-content: space-between;
 }
 
-.container .footer {
-    display: flex;
-    align-items: center;
-}
 
 .footer .social-media ul {
     display: flex;
@@ -314,11 +315,11 @@ input[type="number"] {
 
 .social-media a {
     color: var(--paragraph-text-color);
+    transition: color 0.3s ease;
 }
 
 .social-media a:hover {
     color: var(--primary-color);
-    transition: 0.3s ease;
     text-decoration: none;
 }
 
@@ -326,7 +327,7 @@ input[type="number"] {
 @keyframes slideInFromBottom {
     0% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(100%);
     }
     100% {
         opacity: 1;
