@@ -98,9 +98,13 @@ p {
     text-align: center;
 }
 
+.home-page .container {
+    animation: slideInFromBottom 1.5s ease-in;
+}
+
 .home-page .flex {
     flex-direction: column;
-    gap: 30px;
+    gap: 15px;
 }
 
 .home-page-location {
@@ -130,6 +134,12 @@ p {
     border: none;
     font-size: 0.95rem;
     font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #b8711f;
 }
 
 /* Services */
@@ -141,6 +151,11 @@ p {
     line-height: 1.6;
     border: 1px solid #8A8178;
     border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
 }
 
 
@@ -301,6 +316,18 @@ input[type="number"] {
     color: var(--primary-color);
     transition: 0.3s ease;
     text-decoration: none;
+}
+
+/* Animations */
+@keyframes slideInFromBottom {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* Utilities */
