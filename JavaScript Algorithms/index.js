@@ -694,3 +694,56 @@ var isAnagram = function(s, t) {
 };
 
 console.log(isAnagram("act", "cat"))
+
+function checkMagazine(magazine, note) {
+    const noteWords = note.split(" ");
+    const magazineWords = magazine.split(" ");
+    let noteCount = {};
+    let magazineCount = {};
+    
+    for (let i = 0; i < magazineWords.length; i++) {
+        if(magazineCount[magazineWords[i]] === undefined) {
+            magazineCount[magazineWords[i]] = 1
+        } else {
+            magazineCount[magazineWords[i]] += 1
+        }
+    }
+
+    for (let i = 0; i < noteWords.length; i++) {
+        if (noteCount[noteWords[i]] === undefined) {
+            noteCount[noteWords[i]] = 1
+        } else {
+            noteCount[noteWords[i]] += 1
+        }
+    }
+
+    for (let word in noteCount) {
+        if (noteCount[word] > magazineCount[word]) {
+            return "no"
+        }
+    }
+    return "yes"
+}
+
+console.log(checkMagazine("give me one grand today night", "give one grand today"));
+
+
+function betterCompressions(s) {
+    let charCount = {};
+    const number = s.match(/\d+/);
+
+    for (let i = 0; i < s.length; i++) {
+        if(charCount[count[i]] === undefined) {
+            charCount[count[i]] = 1
+        } else {
+            charCount[count[i]] += 1
+        }
+    }
+
+    for (let char in charCount) {
+        if (charCount > 1) {
+            s += number
+        }
+    }
+    return s;
+}
