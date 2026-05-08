@@ -297,6 +297,10 @@ input[type="number"] {
     text-align: center;
 }
 
+.footer .flex {
+    justify-content: space-between;
+}
+
 .container .footer {
     display: flex;
     align-items: center;
