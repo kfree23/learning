@@ -122,7 +122,7 @@
 //         }
 //         return -1
 //     }
- 
+
 //     print() {
 //         if (this.isEmpty()) {
 //             console.log('The list is empty')
@@ -175,3 +175,89 @@
 //     }
 //     return container.join(',') === [...container].reverse().join(',');
 // };
+
+
+//Factory function
+// function pizzaFactory(pizzaSize) {
+//     const crust = "original";
+//     const size = pizzaSize;
+//     return {
+//         bake: () => console.log(`Baking a ${size} ${crust} crust pizza.`)
+//     }
+// }
+
+// const myPizza = pizzaFactory("small");
+// myPizza.bake();
+
+
+class Pizza {
+    crust = "original";
+    #sauce = "traditional";
+    #size;
+    constructor(pizzaSize) {
+        this.#size = pizzaSize;
+        this.crust = "original";
+    }
+
+    getCrust() {
+        return this.crust;
+    }
+
+    setCrust(pizzaCrust) {
+        this.crust = pizzaCrust;
+    }
+
+    hereYouGo() {
+        console.log(`Here's your ${this.crust} ${this.#sauce} sauce ${this.#size} pizza.`);
+    }
+}
+
+const myPizza = new Pizza("large");
+myPizza.hereYouGo();
+console.log(myPizza.getCrust());
+
+
+class Team {
+    #fouls;
+
+    constructor(name, city) {
+        this.name = name;
+        this.city = city;
+        this.#fouls = 0;
+    }
+
+    addFoul() {
+        console.log(this.#fouls++);
+    }
+
+    getFouls() {
+    return this.#fouls;
+}
+}
+
+const lakers = new Team("Lakers", "Los Angeles");
+lakers.addFoul();
+console.log(lakers.getFouls());
+
+
+class Player {
+    constructor (name, points) {
+        this.name = name;
+        this.points = points;
+    }
+
+    describe() {
+        console.log(`This player is ${this.name} and averages ${this.points} PPG.`);
+    }
+}
+
+const newPlayer = new Player("LeBron", 23);
+newPlayer.describe();
+
+
+const player = { name: 'AD', points: 22, rebounds: 12, team: 'Lakers' };
+
+const { name, rebounds } = player;
+
+const medals = ['USA', 'China', 'UK'];
+const [ gold, silver ] = medals;
