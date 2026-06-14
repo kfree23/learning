@@ -49,12 +49,14 @@ function displayWeatherInfo(data) {
     const humidityDisplay = document.createElement("p");
     const descDisplay = document.createElement("p");
     const weatherEmoji = document.createElement("p");
+    const saveCityBtn = document.createElement("button");
 
     cityDisplay.textContent = city;
     tempDisplay.textContent = `${((temp - 273.15)* (9 / 5) + 32).toFixed(1)}°F`;
     humidityDisplay.textContent = `Humidity: ${humidity}%`;
     descDisplay.textContent = description;
-    weatherEmoji.textContent = getWeatherEmoji(id)
+    weatherEmoji.textContent = getWeatherEmoji(id);
+    saveCityBtn.textContent = 'Save City';
 
 
     cityDisplay.classList.add("cityDisplay");
@@ -62,12 +64,18 @@ function displayWeatherInfo(data) {
     humidityDisplay.classList.add("humidityDisplay");
     descDisplay.classList.add("descDisplay");
     weatherEmoji.classList.add("weatherEmoji");
+    saveCityBtn.classList.add("saveCityBtn");
 
     card.appendChild(cityDisplay);
     card.appendChild(tempDisplay);
     card.appendChild(humidityDisplay);
     card.appendChild(descDisplay);
     card.appendChild(weatherEmoji);
+    card.appendChild(saveCityBtn);
+
+    saveCityBtn.addEventListener('click', () => {
+        localStorage.setItem('city', city);
+    });
 }
 
 function getWeatherEmoji(weatherId) {
@@ -100,3 +108,15 @@ function displayError(message) {
     card.style.display = "flex";
     card.appendChild(errorDisplay);
 }
+
+async function loadCity() {
+    const storedCity = localStorage.getItem('city');
+    if(storedCity) {
+        const weatherData = await getWeatherData(storedCity);
+        displayWeatherInfo(weatherData);
+    }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    loadCity();
+})

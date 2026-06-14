@@ -21,7 +21,7 @@ body {
     width: 300px;
 }
 
-button[type="submit"] {
+button[type="submit"], .saveCityBtn {
     padding: 10px 20px;
     font-weight: bold;
     font-size: 2rem;
