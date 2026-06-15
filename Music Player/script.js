@@ -9,7 +9,7 @@ const title = document.querySelector('#title');
 const cover = document.querySelector('#cover');
 
 //Song titles
-const songs = ["Do Whatcha Wanna", "Dream", "Let's Get Married"];
+const songs = ["Do Whatcha Wanna", "Dream", "Lets Get Married"];
 
 
 //keep track of songs
@@ -29,7 +29,6 @@ function playSong() {
     musicContainer.classList.add('play');
     playBtn.querySelector('i.fas').classList.remove('fa-play');
     playBtn.querySelector('i.fas').classList.add('fa-pause');
-
     audio.play();
 }
 
