@@ -220,6 +220,46 @@ header p {
     display: none;
 }
 
+.modal {
+    width: 100%;
+    max-width: 500px;
+    background-color: var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    border-radius: 5px;
+    display: none;
+}
+
+.modal h2 {
+    color: white;
+    margin-top: 10px;
+}
+
+.modal-btn-style button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin: 10px 0;
+    background-color: var(--primary-light);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.low {
+    color: #4CAF50;
+}
+
+.medium {
+    color: #FFC107;
+}
+
+.high {
+    color: #F44336;
+}
+
 footer {
     display: flex;
     justify-content: space-between;
