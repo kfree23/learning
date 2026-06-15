@@ -6,17 +6,61 @@ const clearCompletedBtn = document.getElementById('clear-completed');
 const emptyState = document.querySelector('.empty-state');
 const dateElement = document.getElementById('date');
 const filters = document.querySelectorAll('.filter');
+const modal = document.querySelector('dialog');
+const lowPriority = document.querySelector('.low');
+const mediumPriority = document.querySelector('.medium');
+const highPriority = document.querySelector('.high');
 
 let todos = [];
 let currentFilter = 'all';
+let currentTodoId = null;
 
 addTaskBtn.addEventListener('click', () => {
-    addTodo(taskInput.value)
+    modal.showModal();
+    addTodo(taskInput.value);
+});
+
+lowPriority.addEventListener('click', () => {
+    todos = todos.map(todo => {
+        if (todo.id === currentTodoId) {
+            return { ...todo, priority: 'low' }
+        }
+        return todo;
+    });
+    saveTodos();
+    renderTodos();
+    modal.close();
+});
+
+mediumPriority.addEventListener('click', () => {
+    todos = todos.map(todo => {
+        if (todo.id === currentTodoId) {
+            return {...todo, priority: 'medium'}
+        }
+        return todo;
+    });
+    saveTodos();
+    renderTodos();
+    modal.close();
+});
+
+highPriority.addEventListener('click', () => {
+    todos = todos.map(todo => {
+        if (todo.id === currentTodoId) {
+            return {...todo, priority: 'high'}
+        }
+        return todo;
+    });
+    saveTodos();
+    renderTodos();
+    modal.close();
 });
 
 taskInput.addEventListener('keydown', (e) => {
-    if(e.key === 'Enter') {
-        addTodo(taskInput.value)
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        modal.showModal();
+        addTodo(taskInput.value);
     }
 });
 
@@ -29,9 +73,11 @@ function addTodo(text) {
         id: Date.now(),
         text,
         completed: false,
+        priority: 'none'
     };
 
     todos.push(todo);
+    currentTodoId = todo.id;
 
     saveTodos();
     renderTodos();
@@ -51,7 +97,7 @@ function updateItemsCount() {
 
 function checkEmptyState() {
     const filteredTodos = filterTodos(currentFilter)
-    if(filteredTodos.length === 0) {
+    if (filteredTodos.length === 0) {
         emptyState.classList.remove('hidden')
     } else {
         emptyState.classList.add('hidden')
@@ -59,7 +105,7 @@ function checkEmptyState() {
 }
 
 function filterTodos(filter) {
-    switch(filter) {
+    switch (filter) {
         case "active":
             return todos.filter((todo) => !todo.completed);
         case "completed":
@@ -77,7 +123,7 @@ function renderTodos() {
     filteredTodos.forEach(todo => {
         const todoItem = document.createElement('li');
         todoItem.classList.add('todo-item');
-        if(todo.completed) {
+        if (todo.completed) {
             todoItem.classList.add('completed')
         }
 
@@ -105,12 +151,15 @@ function renderTodos() {
         deleteBtn.innerHTML = "<i class='fas fa-times'></i>";
         deleteBtn.addEventListener('click', () => deleteTodo(todo.id));
 
+        if (todo.priority === 'low') todoItem.classList.add('low');
+        if (todo.priority === 'medium') todoItem.classList.add('medium');
+        if (todo.priority === 'high') todoItem.classList.add('high');
+
         todoItem.appendChild(checkboxContainer);
         todoItem.appendChild(todoText);
         todoItem.appendChild(deleteBtn);
 
         todosList.appendChild(todoItem);
-
     });
 }
 
@@ -122,8 +171,8 @@ function clearCompleted() {
 
 function toggleTodo(id) {
     todos = todos.map(todo => {
-        if(todo.id === id) {
-            return {...todo, completed: !todo.completed}
+        if (todo.id === id) {
+            return { ...todo, completed: !todo.completed }
         }
 
         return todo
@@ -139,9 +188,9 @@ function deleteTodo(id) {
     renderTodos();
 }
 
-function loadTodos(){
+function loadTodos() {
     const storedTodos = localStorage.getItem('todos');
-    if(storedTodos) {
+    if (storedTodos) {
         todos = JSON.parse(storedTodos);
     }
     renderTodos();
@@ -157,7 +206,7 @@ function setActiveFilter(filter) {
     currentFilter = filter;
 
     filters.forEach((item) => {
-        if(item.getAttribute("data-filter") === filter) {
+        if (item.getAttribute("data-filter") === filter) {
             item.classList.add('active');
         } else {
             item.classList.remove('active');
@@ -173,6 +222,8 @@ function setDate() {
 
     dateElement.textContent = today.toLocaleDateString('en-US', options);
 }
+
+
 
 window.addEventListener('DOMContentLoaded', () => {
     loadTodos();

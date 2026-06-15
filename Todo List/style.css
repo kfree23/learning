@@ -131,9 +131,6 @@ header p {
     transition: background-color 0.2s;
 }
 
-.todo-item:hover {
-    background-color: var(--light);
-}
 
 .checkbox-container {
     margin-right: 15px;
@@ -193,6 +190,10 @@ header p {
     transition: all 0.2s;
 }
 
+.todo-item:hover {
+    background-color: var(--light);
+}
+
 .todo-item:hover .delete-btn {
     opacity: 1;
 }
@@ -220,17 +221,26 @@ header p {
     display: none;
 }
 
-.modal {
+
+dialog[open] {
     width: 100%;
     max-width: 500px;
     background-color: var(--primary);
+    border-radius: 5px;
+    z-index: 999;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 15px;
-    border-radius: 5px;
-    display: none;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+dialog {
+    margin: auto;
 }
 
 .modal h2 {
@@ -246,18 +256,37 @@ header p {
     background-color: var(--primary-light);
     font-size: 1rem;
     font-weight: 600;
+    cursor: pointer;
 }
 
-.low {
+.low-btn {
     color: #4CAF50;
 }
 
-.medium {
+.low:hover {
+    background-color: #4CAF50;
+    opacity: 0.5;
+    color: white;
+}
+
+.medium-btn {
     color: #FFC107;
 }
 
-.high {
+.medium:hover {
+    background-color: #FFC107;
+    opacity: 0.5;
+    color: white;
+}
+
+.high-btn {
     color: #F44336;
+}
+
+.high:hover {
+    background-color: #F44336;
+    opacity: 0.5;
+    color: white;
 }
 
 footer {
