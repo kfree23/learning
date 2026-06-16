@@ -10,7 +10,7 @@ Base code follows along with guided lessons. I add features on top — new funct
 Solving problems in JavaScript. Arrays, strings, recursion, sorting — working through the fundamentals and building the muscle.
 
 **Projects**  
-Some grew out of tutorials, some started from scratch. The ones worth seeing are pinned on my profile.
+Some grew out of tutorials, some started from scratch.
 
 ## Stack
 JavaScript, React, HTML, CSS
