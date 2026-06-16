@@ -45,7 +45,7 @@ function pauseSong() {
 function prevSong() {
     songIndex--;
 
-    if(songIndex < 0) {
+    if (songIndex < 0) {
         songIndex = songs.length - 1;
     }
 
@@ -65,7 +65,7 @@ function nextSong() {
 }
 
 function updateProgress(e) {
-    const {duration, currentTime} = e.srcElement;
+    const { duration, currentTime } = e.srcElement;
     const progressPercent = (currentTime / duration) * 100;
     progress.style.width = `${progressPercent}%`
 }
@@ -79,14 +79,19 @@ function setProgress(e) {
 }
 
 //Music Library
-function musicLibrary() {
-    songs.forEach(song => {
+function musicLibrary(song) {
+    const songLibrary = document.querySelector('.song-library');
+    songs.forEach((song, index) => {
         const music = document.createElement('li');
         music.classList.add('song-library');
-        music.appendChild(music);
+        songLibrary.appendChild(music);
 
-        loadSong(songs[index]);
-        playSong();
+        music.textContent = song;
+
+        music.addEventListener('click', () => {
+            loadSong(songs[index]);
+            playSong();
+        });
     });
 }
 
