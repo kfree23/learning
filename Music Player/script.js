@@ -16,7 +16,9 @@ const songs = ["Do Whatcha Wanna", "Dream", "Lets Get Married"];
 let songIndex = 2;
 
 //initially load song info to DOM
-loadSong(songs[songIndex])
+loadSong(songs[songIndex]);
+
+musicLibrary();
 
 //update song details
 function loadSong(song) {
@@ -74,6 +76,18 @@ function setProgress(e) {
     const duration = audio.duration;
 
     audio.currentTime = (clickX / width) * duration;
+}
+
+//Music Library
+function musicLibrary() {
+    songs.forEach(song => {
+        const music = document.createElement('li');
+        music.classList.add('song-library');
+        music.appendChild(music);
+
+        loadSong(songs[index]);
+        playSong();
+    });
 }
 
 // Event listeners
